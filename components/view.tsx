@@ -1,12 +1,18 @@
 'use client'
 
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { trpc } from '@/app/_trpc/client'
 
 export function View() {
-  const { data: characters } = useSuspenseQuery(
-    trpc.characters.getAll.queryOptions()
-  )
+  const {
+    data: characters,
+    isLoading,
+    error,
+  } = useQuery(trpc.characters.getAll.queryOptions())
+
+  if (isLoading) return <div>Loading...</div>
+  
+  if (error) return <div>{error.message}</div>
 
   return (
     <div>

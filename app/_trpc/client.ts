@@ -29,7 +29,7 @@ export const trpcClient = createTRPCClient<AppRouter>({
           ...options,
           credentials: 'include',
         })
-      },
+      }
     }),
   ],
 })

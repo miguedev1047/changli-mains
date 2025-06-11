@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { useTheme } from 'next-themes'
 
-export default function ModeSwitch() {
+export function ModeSwitch() {
   const id = useId()
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)

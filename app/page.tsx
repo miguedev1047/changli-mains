@@ -1,6 +1,5 @@
-import { Suspense } from 'react'
 import { View } from '@/components/view'
-import ModeSwitch from '@/components/mode-switch'
+import { ModeSwitch } from '@/components/mode-switch'
 
 export default function Home() {
   return (
@@ -10,9 +9,7 @@ export default function Home() {
         <ModeSwitch />
       </header>
 
-      <Suspense fallback={<p>Loading...</p>}>
-        <View />
-      </Suspense>
+      <View />
     </main>
   )
 }
