@@ -19,7 +19,7 @@ export function DashboardSidebar({
 }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
-      collapsible='offcanvas'
+      collapsible='icon'
       {...props}
     >
       <SidebarHeader>
