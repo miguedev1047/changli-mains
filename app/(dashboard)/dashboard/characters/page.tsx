@@ -13,7 +13,7 @@ export default function DashboardCharactersPage() {
     <>
       <header className='flex items-center justify-between'>
         <h2 className='font-black text-xl md:text-2xl uppercase'>
-          Lista de Personajes
+          Lista de personajes
         </h2>
 
         <div className='flex items-center gap-2'>

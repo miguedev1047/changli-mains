@@ -1,7 +1,7 @@
 import { ErrorBoundaryProps } from '@/types/error-boundary'
 import { Button } from '@/components/ui/button'
 
-export default function ErrorBoundaryMessage(props: ErrorBoundaryProps) {
+export function ErrorBoundaryMessage(props: ErrorBoundaryProps) {
   const { reset } = props
 
   return (
