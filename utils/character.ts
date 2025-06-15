@@ -2,6 +2,7 @@ import { elementOptions, weaponOptions } from '@/constants/options'
 import { trpc } from '@/app/_trpc/client'
 import { lowerCaseFunc } from '@/helpers/to-lower-str'
 import { inferOutput } from '@trpc/tanstack-react-query'
+import { rarityColorsData } from '@/constants/data'
 
 type CharactersProps = inferOutput<typeof trpc.characters.getAll>
 type Filters = { [k: string]: string }
@@ -52,17 +53,6 @@ export function getIconWeapon(weapon: string) {
 
 export function getRarityClass(rarity: string) {
   if (!rarity) return
-
-  switch (rarity) {
-    case 'FIVE_STAR':
-      return 'after:bg-gradient-to-t after:from-yellow-300/15 after:to-transparent'
-    case 'FOUR_STAR':
-      return 'after:bg-gradient-to-t after:from-purple-300/15 after:to-transparent'
-    case 'THREE_STAR':
-      return 'after:bg-gradient-to-t after:from-blue-300/15 after:to-transparent'
-    case 'TWO_STAR':
-      return 'after:bg-gradient-to-t after:from-green-300/15 after:to-transparent'
-    case 'ONE_STAR':
-      return 'after:bg-gradient-to-t after:from-gray-300/15 after:to-transparent'
-  }
+  const RARITY_COLOR = rarityColorsData[rarity as keyof typeof rarityColorsData]
+  return RARITY_COLOR
 }
