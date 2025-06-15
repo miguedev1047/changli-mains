@@ -42,27 +42,35 @@ export const quickLinksData = [
     href: '/dashboard/characters',
     src: CharactersImg,
     color: 'bg-gradient-to-br from-purple-500 to-purple-700',
-    icon: Users
+    icon: Users,
   },
   {
     title: 'Armas',
     href: '/dashboard/weapons',
     src: WeaponsImg,
     color: 'bg-gradient-to-br from-orange-500 to-red-600',
-    icon: Sword
+    icon: Sword,
   },
   {
     title: 'Ecos',
     href: '/dashboard/echoes',
     src: EchoesImg,
     color: 'bg-gradient-to-br from-blue-500 to-cyan-600',
-    icon: Database
+    icon: Database,
   },
   {
     title: 'Materiales',
     href: '/dashboard/materials',
     src: MaterialsImg,
     color: 'bg-gradient-to-br from-green-500 to-emerald-600',
-    icon: Box
+    icon: Box,
   },
 ]
+
+export const rarityColorsData = {
+  ONE_STAR: 'after:bg-gradient-to-t after:from-gray-300/15 after:to-transparent',
+  TWO_STAR: 'after:bg-gradient-to-t after:from-green-300/15 after:to-transparent',
+  THREE_STAR: 'after:bg-gradient-to-t after:from-blue-300/15 after:to-transparent',
+  FOUR_STAR: 'after:bg-gradient-to-t after:from-purple-300/15 after:to-transparent',
+  FIVE_STAR: 'after:bg-gradient-to-t after:from-yellow-300/15 after:to-transparent',
+}
