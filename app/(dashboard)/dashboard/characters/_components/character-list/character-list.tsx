@@ -2,9 +2,8 @@
 
 import { trpc } from '@/app/_trpc/client'
 import { CharacterCard } from '@/components/character-card'
-import { SpinContentLoader } from '@/components/spin-loaders'
 import { filterCharacters } from '@/utils/character'
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 
 export function CharacterList() {
@@ -12,11 +11,9 @@ export function CharacterList() {
   const queryParams = Object.fromEntries(searchParams.entries())
 
   const characterQueryOpts = trpc.characters.getAll.queryOptions()
-  const { data: characters, isError, isLoading } = useQuery(characterQueryOpts)
+  const { data: characters } = useSuspenseQuery(characterQueryOpts)
 
-  if (isLoading || isError) return <SpinContentLoader />
-
-  const filteredCharacters = filterCharacters(characters!, queryParams)
+  const filteredCharacters = filterCharacters(characters, queryParams)
 
   const characterList = filteredCharacters?.map((character) => (
     <li

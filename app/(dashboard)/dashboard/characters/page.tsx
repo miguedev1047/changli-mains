@@ -5,6 +5,8 @@ import { QueryInput } from '@/components/query-input'
 import { Button } from '@/components/ui/button'
 import { CharacterList } from '@/app/(dashboard)/dashboard/characters/_components/character-list'
 import { CharacterFilter } from '@/app/(dashboard)/dashboard/characters/_components/character-filter'
+import { Suspense } from 'react'
+import { SpinContentLoader } from '@/components/spin-loaders'
 
 export default function DashboardCharactersPage() {
   return (
@@ -35,7 +37,10 @@ export default function DashboardCharactersPage() {
 
       <section className='space-y-8'>
         <CharacterFilter />
-        <CharacterList />
+
+        <Suspense fallback={<SpinContentLoader />}>
+          <CharacterList />
+        </Suspense>
       </section>
     </>
   )
