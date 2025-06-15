@@ -1,0 +1,1 @@
+export const lowerCaseFunc = (str: string) => str.toLowerCase()
