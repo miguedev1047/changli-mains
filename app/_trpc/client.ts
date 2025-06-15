@@ -4,6 +4,7 @@ import { type AppRouter } from '@/server/routers'
 import { QueryCache, QueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
+import { CACHE_EXPIRATION_TIME } from '@/constants/misc'
 
 export const queryClient = new QueryClient({
   queryCache: new QueryCache({
@@ -18,6 +19,11 @@ export const queryClient = new QueryClient({
       })
     },
   }),
+  defaultOptions: {
+     queries: {
+      staleTime: CACHE_EXPIRATION_TIME,
+     }
+  }
 })
 
 export const trpcClient = createTRPCClient<AppRouter>({
