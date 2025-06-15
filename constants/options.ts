@@ -6,7 +6,6 @@ import {
   HavocIcon,
   SpectroIcon,
 } from '@/assets/elements/_index'
-
 import {
   BoardbladeIcon,
   GuantletsIcon,
@@ -14,6 +13,8 @@ import {
   RectifierIcon,
   SwordIcon,
 } from '@/assets/weapons/_index'
+import { Star1, Star2, Star3, Star4, Star5 } from '@/assets/stars/_index'
+
 
 export const elementOptions = [
   {
@@ -81,26 +82,31 @@ export const rarityOptions = [
     label: '1 Estrella',
     value: 'ONE_STAR',
     star: 1,
+    src: Star1,
   },
   {
     label: '2 Estrellas',
     value: 'TWO_STAR',
     star: 2,
+    src: Star2,
   },
   {
     label: '3 Estrellas',
     value: 'THREE_STAR',
     star: 3,
+    src: Star3,
   },
   {
     label: '4 Estrellas',
     value: 'FOUR_STAR',
     star: 4,
+    src: Star4,
   },
   {
     label: '5 Estrellas',
     value: 'FIVE_STAR',
     star: 5,
+    src: Star5,
   },
 ]
 
