@@ -1,9 +1,6 @@
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
-
-interface SiteHeaderProps {
-  title: string
-}
+import { SiteHeaderProps } from '@/components/dashboard/site-header/site-header.props'
 
 export function SiteHeader(props: SiteHeaderProps) {
   const { title } = props

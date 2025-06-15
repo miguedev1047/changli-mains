@@ -2,7 +2,7 @@
 
 import { useTransition } from 'react'
 import { toast } from 'sonner'
-import { UseDeleteProps } from '@/components/delete-button/delete-button.type'
+import { UseDeleteProps } from '@/components/delete-button/delete-button.props'
 import { useQueryClient } from '@tanstack/react-query'
 import { invalidateQuery } from '@/helpers/invalidate-query'
 

@@ -5,11 +5,7 @@ import { DashboardSidebar } from '@/components/dashboard/dashboard-sidebar'
 import { SiteHeader } from '@/components/dashboard/site-header'
 import { useStore } from 'zustand'
 import { useSidebarStore } from '@/stores/use-sidebar'
-
-interface DashboardWrapperProps {
-  children: React.ReactNode
-  title: string
-}
+import { DashboardWrapperProps } from '@/components/dashboard/dashboard-wrapper/dashboard-wrapper.props'
 
 export function DashboardSidebarWrapper(props: DashboardWrapperProps) {
   const { children, title } = props
@@ -31,7 +27,7 @@ export function DashboardSidebarWrapper(props: DashboardWrapperProps) {
         <SiteHeader title={title} />
 
         <div className='flex-1 flex-col'>
-          <div className='@container/main flex flex-1 flex-col gap-6 md:gap-8 p-4 md:p-6'>
+          <div className='@container/main flex flex-1 flex-col gap-6 md:gap-8 p-4 md:p-6 h-full'>
             {children}
           </div>
         </div>

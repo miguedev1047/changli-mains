@@ -7,19 +7,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import type { LucideProps } from 'lucide-react'
+import { NavMainProps } from '@/components/dashboard/nav-main/nav-main.props'
 
-export function NavMain({
-  items,
-}: {
-  items: {
-    title: string
-    url: string
-    icon?: React.ForwardRefExoticComponent<
-      Omit<LucideProps, 'ref'> & React.RefAttributes<SVGSVGElement>
-    >
-  }[]
-}) {
+export function NavMain(props: NavMainProps) {
+  const { items } = props
   return (
     <SidebarGroup>
       <SidebarGroupContent className='flex flex-col gap-2'>

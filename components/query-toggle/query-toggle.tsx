@@ -7,22 +7,7 @@ import { Suspense } from 'react'
 import { SpinLoaderInput } from '@/components/spin-loaders'
 import { cn } from '@/lib/utils'
 import { WAIT_BEFORE_DEBOUNCE } from '@/constants/misc'
-
-export type QueryToggleProps = {
-  queryKey: string
-  queryValue: string
-  children: React.ReactNode
-  className?: string
-  variant?: 'outline' | 'default'
-}
-
-export function QueryToggle(props: QueryToggleProps) {
-  return (
-    <Suspense fallback={<SpinLoaderInput />}>
-      <QueryComponent {...props} />
-    </Suspense>
-  )
-}
+import { QueryToggleProps } from '@/components/query-toggle/query-toggle.props'
 
 function QueryComponent(props: QueryToggleProps) {
   const {
@@ -66,5 +51,13 @@ function QueryComponent(props: QueryToggleProps) {
     >
       {children}
     </Toggle>
+  )
+}
+
+export function QueryToggle(props: QueryToggleProps) {
+  return (
+    <Suspense fallback={<SpinLoaderInput />}>
+      <QueryComponent {...props} />
+    </Suspense>
   )
 }

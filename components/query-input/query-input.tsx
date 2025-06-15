@@ -8,18 +8,7 @@ import { Suspense } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { WAIT_BEFORE_DEBOUNCE } from '@/constants/misc'
-
-export type QueryInputProps = React.ComponentProps<typeof Input> & {
-  queryParam: string
-}
-
-export function QueryInput(props: QueryInputProps) {
-  return (
-    <Suspense fallback={<SpinLoaderInput />}>
-      <QueryComponent {...props} />
-    </Suspense>
-  )
-}
+import { QueryInputProps } from '@/components/query-input/query-input.props'
 
 function QueryComponent(props: QueryInputProps) {
   const { queryParam, placeholder, className } = props
@@ -56,3 +45,13 @@ function QueryComponent(props: QueryInputProps) {
     </div>
   )
 }
+
+export function QueryInput(props: QueryInputProps) {
+  return (
+    <Suspense fallback={<SpinLoaderInput />}>
+      <QueryComponent {...props} />
+    </Suspense>
+  )
+}
+
+

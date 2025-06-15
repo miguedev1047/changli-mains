@@ -9,18 +9,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { ChevronLeft } from 'lucide-react'
-
-type CardFormWrapperProps = {
-  title: string
-  description?: string
-  isEditing?: boolean
-  isPending?: boolean
-  canSubmit?: boolean
-  backButton?: boolean
-  disabled?: boolean
-  formId: string
-  children: React.ReactNode
-}
+import { CardFormWrapperProps } from '@/components/card-form-wrapper/card-form-wrapper.props'
 
 export function CardFormWrapper(props: CardFormWrapperProps) {
   const {

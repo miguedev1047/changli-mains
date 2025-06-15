@@ -3,17 +3,17 @@
 import Image from 'next/image'
 
 import {
+  getIconElement,
+  getIconWeapon,
+  getRarityClass,
+} from '@/utils/character'
+import {
   useCharacterNavigation,
   useDeleteCharacter,
 } from '@/components/character-card/character-card.hook'
 import { Card } from '@/components/ui/card'
 import { DeleteButton } from '@/components/delete-button'
 import { Trash } from 'lucide-react'
-import {
-  getIconElement,
-  getIconWeapon,
-  getRarityClass,
-} from '@/utils/character'
 import { CharactersWithRoles } from '@/components/character-card/character-card.props'
 import { cn } from '@/lib/utils'
 

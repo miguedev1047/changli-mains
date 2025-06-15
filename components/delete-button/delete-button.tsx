@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { DeleteButtonProps } from '@/components/delete-button/delete-button.type'
+import { DeleteButtonProps } from '@/components/delete-button/delete-button.props'
 import { useDelete } from '@/components/delete-button/delete-button.hook'
 
 export function DeleteButton(props: DeleteButtonProps) {
