@@ -38,7 +38,7 @@ function QueryComponent(props: QueryToggleProps) {
   return (
     <Toggle
       className={cn(
-        'w-12 h-12 p-1.5 relative cursor-pointer',
+        'size-10 p-1.5 relative cursor-pointer',
         'bg-card-foreground data-[state=on]:bg-muted-foreground hover:bg-muted-foreground',
         'dark:bg-card data-[state=on]:dark:bg-accent dark:hover:bg-accent',
         'text-secondary dark:text-secondary-foreground',
