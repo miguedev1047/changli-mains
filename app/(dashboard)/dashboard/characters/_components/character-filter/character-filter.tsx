@@ -11,7 +11,7 @@ import { QueryToggle } from '@/components/query-toggle'
 
 export function CharacterFilter() {
   return (
-    <div className='flex flex-row flex-wrap gap-4 md:gap-8'>
+    <div className='flex flex-row flex-wrap @5xl/main:gap-6 gap-4'>
       <ul className='flex space-x-2'>
         {rarityOptions.slice(3, 5).map((filter) => (
           <QueryToggle
@@ -30,7 +30,7 @@ export function CharacterFilter() {
         ))}
       </ul>
 
-      <ul className='flex space-x-3'>
+      <ul className='flex space-x-2'>
         {elementOptions.map((filter) => (
           <QueryToggle
             key={filter.value}
@@ -47,7 +47,7 @@ export function CharacterFilter() {
         ))}
       </ul>
 
-      <ul className='flex space-x-3'>
+      <ul className='flex space-x-2'>
         {weaponOptions.map((filter) => (
           <QueryToggle
             key={filter.value}
