@@ -11,7 +11,7 @@ export const charactersRouter = router({
     try {
       const characters = await db.query.characters.findMany({
         with: { roles: true },
-        orderBy: (characters, { desc }) => desc(characters.name),
+        orderBy: (characters, { asc }) => asc(characters.name),
       })
       return characters
     } catch {
