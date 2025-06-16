@@ -1,11 +1,10 @@
-import { publicProcedure, router } from '@/server/trpc'
+import { router } from '@/server/trpc'
 import { charactersRouter } from '@/server/routers/characters'
+import { weaponsRouter } from '@/server/routers/weapons'
 
 export const appRouter = router({
-  getPublicData: publicProcedure.query(async () => {
-    return { message: 'Hello from tRPC' }
-  }),
   characters: charactersRouter,
+  weapons: weaponsRouter
 })
 
 export type AppRouter = typeof appRouter
