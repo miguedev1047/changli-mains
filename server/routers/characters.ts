@@ -30,7 +30,7 @@ export const charactersRouter = router({
 
     try {
       const character = await db.query.characters.findFirst({
-        where: (characters, { eq }) => eq(characters.id, id),
+        where: (character, { eq }) => eq(character.id, id),
         with: { roles: true },
       })
       return character
@@ -52,7 +52,7 @@ export const charactersRouter = router({
 
       try {
         const character = await db.query.characters.findFirst({
-          where: (characters, { eq }) => eq(characters.name, name),
+          where: (character, { eq }) => eq(character.name, name),
           with: { roles: true },
         })
         return character
@@ -110,7 +110,6 @@ export const charactersRouter = router({
             createdAt: now,
             updatedAt: now,
           })
-          .returning({ id: characters.id })
 
         const characterRoles = combat_styles.map((role) => ({
           id: createId(),
