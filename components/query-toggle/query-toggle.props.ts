@@ -3,5 +3,6 @@ export type QueryToggleProps = {
   queryValue: string
   children: React.ReactNode
   className?: string
+  name: string
   variant?: 'outline' | 'default'
 }
