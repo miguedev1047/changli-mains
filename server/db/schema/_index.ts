@@ -6,6 +6,7 @@ import {
   charactersRoles,
   charactersRolesRelations,
 } from '@/server/db/schema/characters'
+import { weapons } from '@/server/db/schema/weapons'
 
 export const schemas = {
   characters,
@@ -16,4 +17,5 @@ export const schemas = {
   account,
   verification,
   session,
+  weapons,
 }
