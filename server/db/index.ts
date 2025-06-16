@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/libsql'
 import { createClient } from '@libsql/client'
-import { schemas } from './schema'
+import { schemas } from '@/server/db/schema/_index'
 
 const client = createClient({
   url: process.env.DATABASE_URL || '',
