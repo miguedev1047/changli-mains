@@ -1,6 +1,6 @@
 import { createTRPCClient, httpBatchLink } from '@trpc/client'
 
-import { type AppRouter } from '@/server/routers'
+import { type AppRouter } from '@/server/routers/_index'
 import { QueryCache, QueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query'
