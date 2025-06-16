@@ -19,8 +19,9 @@ export function CharacterFilter() {
             queryKey='stars'
             queryValue={filter.value}
             className='flex items-center gap-1'
+            name={filter.label}
           >
-           <Image
+            <Image
               src={filter.src}
               alt={filter.label}
               width={128}
@@ -36,6 +37,7 @@ export function CharacterFilter() {
             key={filter.value}
             queryKey='element'
             queryValue={filter.value}
+            name={filter.label}
           >
             <Image
               src={filter.src}
@@ -53,6 +55,7 @@ export function CharacterFilter() {
             key={filter.value}
             queryKey='weapon'
             queryValue={filter.value}
+            name={filter.label}
           >
             <Image
               src={filter.src}
