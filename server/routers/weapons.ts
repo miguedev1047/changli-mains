@@ -63,23 +63,23 @@ export const weaponsRouter = router({
     const weaponId = createId()
     const now = new Date()
 
+    const VALIDATION = weaponSchema.safeParse(input)
+
+    if (!VALIDATION.success) {
+      return { success: false, message: 'Datos invalidos!' }
+    }
+
+    const {
+      description,
+      icon_image,
+      name,
+      rarity,
+      weapon_type,
+      is_new,
+      is_public,
+    } = VALIDATION.data
+
     try {
-      const VALIDATION = weaponSchema.safeParse(input)
-
-      if (!VALIDATION.success) {
-        return { success: false, message: 'Datos invalidos!' }
-      }
-
-      const {
-        description,
-        icon_image,
-        name,
-        rarity,
-        weapon_type,
-        is_new,
-        is_public,
-      } = VALIDATION.data
-
       await db.insert(weapons).values({
         id: weaponId,
         description,
@@ -102,28 +102,28 @@ export const weaponsRouter = router({
   update: protectedProcedure.input(weaponSchema).mutation(async ({ input }) => {
     const now = new Date()
 
+    const VALIDATION = weaponSchema.safeParse(input)
+
+    if (!VALIDATION.success) {
+      return { success: false, message: 'Datos invalidos!' }
+    }
+
+    const {
+      id,
+      description,
+      icon_image,
+      name,
+      rarity,
+      weapon_type,
+      is_new,
+      is_public,
+    } = VALIDATION.data
+
+    if (!id) {
+      return { success: false, message: 'ID inválido!' }
+    }
+
     try {
-      const VALIDATION = weaponSchema.safeParse(input)
-
-      if (!VALIDATION.success) {
-        return { success: false, message: 'Datos invalidos!' }
-      }
-
-      const {
-        id,
-        description,
-        icon_image,
-        name,
-        rarity,
-        weapon_type,
-        is_new,
-        is_public,
-      } = VALIDATION.data
-
-      if (!id) {
-        return { success: false, message: 'ID inválido!' }
-      }
-
       await db
         .update(weapons)
         .set({

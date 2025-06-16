@@ -67,49 +67,47 @@ export const charactersRouter = router({
       const characterId = createId()
       const now = new Date()
 
-      try {
-        const VALIDATION = characterSchema.safeParse(input)
+      const VALIDATION = characterSchema.safeParse(input)
 
-        if (!VALIDATION.success) {
-          return { success: false, message: 'Datos invalidos!' }
+      if (!VALIDATION.success) {
+        return { success: false, message: 'Datos invalidos!' }
+      }
+
+      const {
+        description,
+        combat_styles,
+        element_type,
+        icon_image,
+        splash_image,
+        name,
+        rarity,
+        weapon_type,
+        is_new,
+        is_public,
+      } = VALIDATION.data
+
+      if (combat_styles.length <= DEFAULT_ZERO) {
+        return {
+          success: false,
+          message: 'Debes seleccionar al menos un estilo de combate!',
         }
+      }
 
-        const {
+      try {
+        await db.insert(characters).values({
+          id: characterId,
           description,
-          combat_styles,
           element_type,
-          icon_image,
           splash_image,
+          icon_image,
           name,
           rarity,
           weapon_type,
           is_new,
           is_public,
-        } = VALIDATION.data
-
-        if (combat_styles.length <= DEFAULT_ZERO) {
-          return {
-            success: false,
-            message: 'Debes seleccionar al menos un estilo de combate!',
-          }
-        }
-
-        await db
-          .insert(characters)
-          .values({
-            id: characterId,
-            description,
-            element_type,
-            splash_image,
-            icon_image,
-            name,
-            rarity,
-            weapon_type,
-            is_new,
-            is_public,
-            createdAt: now,
-            updatedAt: now,
-          })
+          createdAt: now,
+          updatedAt: now,
+        })
 
         const characterRoles = combat_styles.map((role) => ({
           id: createId(),
