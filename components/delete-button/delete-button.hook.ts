@@ -12,9 +12,7 @@ export function useDelete(props: UseDeleteProps) {
 
   const [isPending, startTransition] = useTransition()
 
-  function onDeleteItem(e: React.MouseEvent<HTMLButtonElement>) {
-    e.stopPropagation()
-
+  function onDeleteItem() {
     startTransition(async () => {
       const { message, success } = await onDelete(itemId)
       
