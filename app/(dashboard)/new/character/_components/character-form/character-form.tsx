@@ -36,7 +36,7 @@ export function CharacterForm() {
     <CardFormWrapper
       title='Nuevo personaje'
       formId='character-form'
-      disabled={form.formState.isSubmitting}
+      disabled={isSubmitting}
       backButton
     >
       <Form {...form}>
@@ -118,6 +118,7 @@ export function CharacterForm() {
                 <Select
                   value={field.value}
                   onValueChange={field.onChange}
+                  disabled={isSubmitting}
                 >
                   <FormControl>
                     <SelectTrigger className='w-full'>
@@ -151,6 +152,7 @@ export function CharacterForm() {
                 <Select
                   value={field.value}
                   onValueChange={field.onChange}
+                  disabled={isSubmitting}
                 >
                   <FormControl>
                     <SelectTrigger className='w-full'>
@@ -184,6 +186,7 @@ export function CharacterForm() {
                 <Select
                   value={field.value}
                   onValueChange={field.onChange}
+                  disabled={isSubmitting}
                 >
                   <FormControl>
                     <SelectTrigger className='w-full'>
@@ -272,6 +275,7 @@ export function CharacterForm() {
                   <Switch
                     checked={field.value}
                     onCheckedChange={field.onChange}
+                    disabled={isSubmitting}
                   />
                 </FormControl>
               </FormItem>
@@ -293,6 +297,7 @@ export function CharacterForm() {
                   <Switch
                     checked={field.value}
                     onCheckedChange={field.onChange}
+                    disabled={isSubmitting}
                   />
                 </FormControl>
               </FormItem>
