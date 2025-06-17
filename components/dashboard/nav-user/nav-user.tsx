@@ -23,7 +23,9 @@ export function NavUser() {
   const { isMobile } = useSidebar()
   const navUserHook = useNavUser()
 
-  if (navUserHook.isPending || !navUserHook.userSession) return null
+  if (navUserHook.isPending || !navUserHook.userSession) {
+    return null
+  }
 
   return (
     <SidebarMenu>
