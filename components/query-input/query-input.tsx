@@ -18,6 +18,7 @@ function QueryComponent(props: QueryInputProps) {
   const params = useSearchParams()
 
   const searchParams = new URLSearchParams(params)
+  const currentValue = searchParams.get(queryParam)?.toString()
 
   const handleSearch = useDebouncedCallback((value: string) => {
     if (value) {
@@ -32,7 +33,7 @@ function QueryComponent(props: QueryInputProps) {
     <div className='relative lg:w-64'>
       <Input
         className={cn('pe-9 ps-9 peer w-full h-8', className)}
-        defaultValue={searchParams.get(queryParam)?.toString()}
+        defaultValue={currentValue}
         onChange={(e) => handleSearch(e.target.value)}
         placeholder={placeholder}
       />
