@@ -21,8 +21,8 @@ export function useWeaponForm() {
   const { push } = useRouter()
   const queryClient = useQueryClient()
 
-  const WeaponMutationOpts = trpc.weapons.create.mutationOptions()
-  const weaponMutation = useMutation(WeaponMutationOpts)
+  const weaponMutationOpts = trpc.weapons.create.mutationOptions()
+  const weaponMutation = useMutation(weaponMutationOpts)
   const weaponQueryKey = trpc.weapons.getAll.queryKey()
 
   const form = useForm<WeaponSchema>({
