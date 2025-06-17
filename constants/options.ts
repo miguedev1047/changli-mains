@@ -13,8 +13,26 @@ import {
   RectifierIcon,
   SwordIcon,
 } from '@/assets/weapons/_index'
+import {
+  CelestialLightImg,
+  EmpyreanAnthemImg,
+  EternalRadianceImg,
+  FlamingClawprintImg,
+  FreezingFrostImg,
+  FrostyResolveImg,
+  GustsOfWelkinImg,
+  HavocEclipseImg,
+  LingeringTunesImg,
+  MidnightVeilImg,
+  MoltenRiftImg,
+  MoonlitCloudsImg,
+  RejuvenatingGlowImg,
+  SierraGaleImg,
+  TidebreakingCourageImg,
+  VoidThunderImg,
+  WindwardPilgrimageImg,
+} from '@/assets/echo-sets/_index'
 import { Star1, Star2, Star3, Star4, Star5 } from '@/assets/stars/_index'
-
 
 export const elementOptions = [
   {
@@ -279,5 +297,131 @@ export const combatStylesOptions = [
     description:
       'Usa el efecto de ruina de destrucción para ganar ventaja en combate.',
     value: 'DESTRUCTION_RUIN',
+  },
+]
+
+export const echoCostOptions = [
+  {
+    label: 'Coste 1',
+    value: 'COST_ONE',
+  },
+  {
+    label: 'Coste 2',
+    value: 'COST_TWO',
+  },
+  {
+    label: 'Coste 3',
+    value: 'COST_THREE',
+  },
+  {
+    label: 'Coste 4',
+    value: 'COST_FOUR',
+  },
+]
+
+export const echoClassTypeOptions = [
+  {
+    label: 'Clase Comun',
+    value: 'COMMON_CLASS',
+  },
+  {
+    label: 'Clase Elite',
+    value: 'ELITE_CLASS',
+  },
+  {
+    label: 'Clase Marea',
+    value: 'OVERLOAD_CLASS',
+  },
+  {
+    label: 'Clase Tsunami',
+    value: 'CALAMITY_CLASS',
+  },
+]
+
+export const echoSetsOptions = [
+  {
+    label: 'Resplandor Rejuvenecedor',
+    value: 'REJUVENATING_GLOW',
+    src: RejuvenatingGlowImg,
+  },
+  {
+    label: 'Eclipse Decadente',
+    value: 'HAVOC_ECLIPSE',
+    src: HavocEclipseImg,
+  },
+  {
+    label: 'Luz Celestial',
+    value: 'CELESTIAL_LIGHT',
+    src: CelestialLightImg,
+  },
+  {
+    label: 'Trueno del Vacío',
+    value: 'VOID_THUNDER',
+    src: VoidThunderImg,
+  },
+  {
+    label: 'Grieta Fundida',
+    value: 'MOLTEN_RIFT',
+    src: MoltenRiftImg,
+  },
+  {
+    label: 'Escarcha Helada',
+    value: 'FREEZING_FROST',
+    src: FreezingFrostImg,
+  },
+  {
+    label: 'Melodías Persistentes',
+    value: 'LINGERING_TUNES',
+    src: LingeringTunesImg,
+  },
+  {
+    label: 'Brisa de Sierra',
+    value: 'SIERRA_GALE',
+    src: SierraGaleImg,
+  },
+  {
+    label: 'Nubes a la Luz de la Luna',
+    value: 'MOONLIT_CLOUDS',
+    src: MoonlitCloudsImg,
+  },
+  {
+    label: 'Resolución Gélida',
+    value: 'FROSTY_RESOLVE',
+    src: FrostyResolveImg,
+  },
+  {
+    label: 'Resplandor Eterno',
+    value: 'ETERNAL_RADIANCE',
+    src: EternalRadianceImg,
+  },
+  {
+    label: 'Coraje Rompeolas',
+    value: 'TIDEBREAKING_COURAGE',
+    src: TidebreakingCourageImg,
+  },
+  {
+    label: 'Himno Empíreo',
+    value: 'EMPYREAN_ANTHEM',
+    src: EmpyreanAnthemImg,
+  },
+  {
+    label: 'Velo de Medianoche',
+    value: 'MIDNIGHT_VEIL',
+    src: MidnightVeilImg,
+  },
+  {
+    label: 'Brisas de Welkin',
+    value: 'GUSTS_OF_WELKIN',
+    src: GustsOfWelkinImg,
+  },
+  {
+    label: 'Huella Llameante',
+    value: 'FLAMING_CLAWPRINT',
+    src: FlamingClawprintImg,
+  },
+  {
+    label: 'Peregrinación del Viento',
+    value: 'WINDWARD_PILGRIMAGE',
+    src: WindwardPilgrimageImg,
   },
 ]
