@@ -135,3 +135,52 @@ export const weaponSchema = z.object({
   is_public: z.boolean(),
 })
 export type WeaponSchema = z.infer<typeof weaponSchema>
+
+export const echoSchema = z.object({
+  id: z.string().optional(),
+
+  name: z
+    .string({
+      required_error: 'El nombre del eco es obligatorio',
+      invalid_type_error: 'El nombre del eco debe ser una cadena de texto',
+    })
+    .min(2, 'El nombre debe tener al menos 2 caracteres'),
+
+  description_skill: z
+    .string({
+      required_error: 'La descripción del eco es obligatoria',
+      invalid_type_error: 'La descripción debe ser una cadena de texto',
+    })
+    .min(10, 'La descripción debe tener al menos 10 caracteres'),
+
+  icon_image: z
+    .string({
+      required_error: 'La URL de la imagen es obligatoria',
+      invalid_type_error: 'La URL de la imagen debe ser una cadena de texto',
+    })
+    .url('El formato de la URL de la imagen no es válido'),
+
+  class_type: z
+    .string({
+      required_error: 'La clase del eco es obligatoria',
+      invalid_type_error: 'La clase del eco seleccionada no es válida',
+    })
+    .min(1, 'Debes seleccionar la clase del eco'),
+
+  cost: z
+    .string({
+      required_error: 'El costo del eco es obligatorio',
+      invalid_type_error: 'El costo del eco debe ser un valor valido',
+    })
+    .min(1, 'El costo es requerido'),
+
+  is_new: z.boolean(),
+
+  is_public: z.boolean(),
+
+  echoes_sets: z
+    .array(z.object({ label: z.string(), value: z.string() }))
+    .min(1)
+    .nonempty('Debes seleccionar al menos un estilo de combate'),
+})
+export type EchoSchema = z.infer<typeof echoSchema>
