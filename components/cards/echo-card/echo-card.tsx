@@ -40,7 +40,7 @@ export function EchoCard(props: EchoCardProps) {
               '[&>*]:z-10'
             )}
           >
-            <figure className='absolute translate-y-[1rem] select-none pointer-events-none size-full'>
+            <figure className='absolute select-none pointer-events-none size-full'>
               <Image
                 src={icon_image}
                 fill

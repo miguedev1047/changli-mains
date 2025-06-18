@@ -40,11 +40,10 @@ export function WeaponCard(props: WeaponCardProps) {
               '[&>*]:z-10'
             )}
           >
-            <figure className='absolute translate-y-[1rem] select-none pointer-events-none'>
+            <figure className='absolute select-none pointer-events-none size-full'>
               <Image
                 src={icon_image}
-                width={500}
-                height={500}
+                fill
                 alt={`Arma: ${name}`}
                 className='size-full object-cover transition-all duration-300 ease-in-out group-hover/item:scale-110 group-hover/item:grayscale-0 '
               />
