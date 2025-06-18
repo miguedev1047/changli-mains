@@ -202,7 +202,7 @@ export function EchoForm() {
                   <Textarea
                     {...field}
                     disabled={isSubmitting}
-                    placeholder='Escribe una descripción del arma'
+                    placeholder='Escribe una descripción del eco'
                     className='min-h-[100px] resize-none'
                     autoComplete='off'
                   />
@@ -219,9 +219,9 @@ export function EchoForm() {
             render={({ field }) => (
               <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
                 <div className='space-y-0.5'>
-                  <FormLabel>Arma nueva</FormLabel>
+                  <FormLabel>Eco nuevo</FormLabel>
                   <FormDescription>
-                    Alternar si el arma es nuevo
+                    Alternar si el eco es nuevo
                   </FormDescription>
                 </div>
                 <FormControl>
@@ -243,7 +243,7 @@ export function EchoForm() {
                 <div className='space-y-0.5'>
                   <FormLabel>Publico para todos</FormLabel>
                   <FormDescription>
-                    Alternar si el arma es publica
+                    Alternar si el eco es publico
                   </FormDescription>
                 </div>
                 <FormControl>
