@@ -31,7 +31,7 @@ export function WeaponList() {
 
   return (
     <TooltipProvider>
-      <ul className='grid @5xl/main:grid-cols-6 @3xl/main:grid-cols-4 @xl/main:grid-cols-3 @lg/main:grid-cols-2 grid-cols-2 gap-4'>
+      <ul className='grid @5xl/main:grid-cols-10 @4xl/main:grid-cols-8 @3xl/main:grid-cols-6 @lg/main:grid-cols-3 grid-cols-2 gap-4'>
         {weaponList}
       </ul>
     </TooltipProvider>
