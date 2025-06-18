@@ -15,6 +15,8 @@ import {
 
 import { weapons } from '@/server/db/schema/weapons'
 
+import { materials } from '@/server/db/schema/materials'
+
 export const schemas = {
   characters,
   characterRelations,
@@ -25,6 +27,7 @@ export const schemas = {
   echoesSets,
   echoesSetsRelations,
   weapons,
+  materials,
   user,
   account,
   verification,
