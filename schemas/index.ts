@@ -184,3 +184,40 @@ export const echoSchema = z.object({
     .nonempty('Debes seleccionar al menos un estilo de combate'),
 })
 export type EchoSchema = z.infer<typeof echoSchema>
+
+export const materialSchema = z.object({
+  id: z.string().optional(),
+
+  name: z
+    .string({
+      required_error: 'El nombre del material es obligatorio',
+      invalid_type_error: 'El nombre del material debe ser una cadena de texto',
+    })
+    .min(2, 'El nombre debe tener al menos 2 caracteres'),
+
+  description: z
+    .string({
+      required_error: 'La descripción del material es obligatoria',
+      invalid_type_error: 'La descripción debe ser una cadena de texto',
+    })
+    .min(10, 'La descripción debe tener al menos 10 caracteres'),
+
+  icon_image: z
+    .string({
+      required_error: 'La URL de la imagen es obligatoria',
+      invalid_type_error: 'La URL de la imagen debe ser una cadena de texto',
+    })
+    .url('El formato de la URL de la imagen no es válido'),
+
+  rarity: z
+    .string({
+      required_error: 'La rareza del material es obligatoria',
+      invalid_type_error: 'La rareza debe ser un valor valido',
+    })
+    .min(1, 'Debes seleccionar una rareza'),
+
+  is_new: z.boolean(),
+
+  is_public: z.boolean(),
+})
+export type MaterialSchema = z.infer<typeof materialSchema>
