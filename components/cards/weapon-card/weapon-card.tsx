@@ -51,7 +51,7 @@ export function WeaponCard(props: WeaponCardProps) {
 
             {showWeaponIcon && (
               <div className='absolute bottom-3 right-3 select-none flex items-center'>
-                <figure className='select-none pointer-events-none size-12'>
+                <figure className='select-none pointer-events-none size-8'>
                   <Image
                     src={WEAPON_ICON?.src || ''}
                     width={500}
