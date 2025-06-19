@@ -13,9 +13,7 @@ import {
   useTeamForm,
 } from '@/app/(dashboard)/new/team/_components/team-form/team-form.hook'
 import { CardFormWrapper } from '@/components/card-form-wrapper'
-import { SpinLoaderInput } from '@/components/spin-loaders'
 import { Input } from '@/components/ui/input'
-import { Suspense } from 'react'
 import { EntityPicker } from '@/components/entity-picker'
 
 export function TeamForm() {
@@ -64,19 +62,17 @@ export function TeamForm() {
                 <FormLabel>Personajes</FormLabel>
 
                 <FormControl>
-                  <Suspense fallback={<SpinLoaderInput />}>
-                    <EntityPicker
-                      queryOpts={charactersQueryOpts}
-                      onChange={field.onChange}
-                      commandProps={{ label: 'Selecciona un personaje' }}
-                      emptyIndicator={
-                        <p className='text-center text-sm'>
-                          No hay personajes disponibles.
-                        </p>
-                      }
-                      placeholder='Selecciona personajes'
-                    />
-                  </Suspense>
+                  <EntityPicker
+                    queryOpts={charactersQueryOpts}
+                    onChange={field.onChange}
+                    commandProps={{ label: 'Selecciona un personaje' }}
+                    emptyIndicator={
+                      <p className='text-center text-sm'>
+                        No hay personajes disponibles.
+                      </p>
+                    }
+                    placeholder='Selecciona personajes'
+                  />
                 </FormControl>
 
                 <FormMessage />
