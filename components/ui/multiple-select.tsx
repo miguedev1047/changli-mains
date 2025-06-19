@@ -449,7 +449,7 @@ export const MultipleSelect = ({
     >
       <div
         className={cn(
-          'min-h-10 rounded-md border border-input text-base ring-offset-background md:text-sm',
+          'min-h-9 rounded-md border border-input text-base ring-offset-background md:text-sm',
           {
             'px-3 py-2': selected.length !== 0,
             'cursor-text': !disabled && selected.length !== 0,
