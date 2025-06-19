@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -34,6 +35,18 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-title"
       className={cn("leading-none font-semibold", className)}
       {...props}
+    />
+  )
+}
+
+export function CardImage({
+  ...props
+}: React.ComponentProps<typeof Image>) {
+  return (
+    <Image
+      {...props}
+      priority
+      alt={props.alt}
     />
   )
 }

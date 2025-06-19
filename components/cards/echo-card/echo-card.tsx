@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-
 import {
   Tooltip,
   TooltipContent,
@@ -13,7 +11,7 @@ import {
 } from '@/components/cards/echo-card/echo-card.hook'
 import { EchoCardProps } from '@/components/cards/echo-card/echo-card.props'
 import { cn } from '@/lib/utils'
-import { Card } from '@/components/ui/card'
+import { Card, CardImage } from '@/components/ui/card'
 import { DeleteButton } from '@/components/delete-button'
 import { Trash } from 'lucide-react'
 import { mapEchoSetToOptions } from '@/utils/echoes'
@@ -41,7 +39,7 @@ export function EchoCard(props: EchoCardProps) {
             )}
           >
             <figure className='absolute select-none pointer-events-none size-full'>
-              <Image
+              <CardImage
                 src={icon_image}
                 fill
                 alt={`Eco: ${name}`}
@@ -58,7 +56,7 @@ export function EchoCard(props: EchoCardProps) {
                     key={item.value}
                     className='size-8 relative'
                   >
-                    <Image
+                    <CardImage
                       fill
                       key={item.value}
                       src={item.src}

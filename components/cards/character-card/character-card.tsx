@@ -6,7 +6,7 @@ import {
   useCharacterNavigation,
   useDeleteCharacter,
 } from '@/components/cards/character-card/character-card.hook'
-import { Card } from '@/components/ui/card'
+import { Card, CardImage } from '@/components/ui/card'
 import { getIconElement, getIconWeapon, getRarityClass } from '@/utils/_general'
 import { DeleteButton } from '@/components/delete-button'
 import { Trash } from 'lucide-react'
@@ -19,7 +19,7 @@ export function CharacterCard(props: CharacterCardProps) {
     showDeleteButton = false,
     showElementAndWeaponIcons = false,
   } = props
-  
+
   const { splash_image, name, id, element_type, rarity, weapon_type } = data!
 
   const { goToCharacterEditPage } = useCharacterNavigation(id)
@@ -42,12 +42,12 @@ export function CharacterCard(props: CharacterCardProps) {
         )}
       >
         <figure className='absolute translate-y-[1rem] select-none pointer-events-none'>
-          <Image
+          <CardImage
             src={splash_image}
             width={500}
             height={500}
+            className='size-full object-cover transition-all duration-300 ease-in-out group-hover/item:scale-110 group-hover/item:grayscale-0'
             alt={`Personaje: ${name}`}
-            className='size-full object-cover transition-all duration-300 ease-in-out group-hover/item:scale-110 group-hover/item:grayscale-0 '
           />
         </figure>
 

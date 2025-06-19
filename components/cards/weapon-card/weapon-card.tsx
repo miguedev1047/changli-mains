@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-
 import {
   Tooltip,
   TooltipContent,
@@ -10,7 +8,7 @@ import {
 import { cn } from '@/lib/utils'
 import { useDeleteWeapon, useWeaponNavigation } from '@/components/cards/weapon-card/weapon-card.hook'
 import { WeaponCardProps } from '@/components/cards/weapon-card/weapon-card.props'
-import { Card } from '@/components/ui/card'
+import { Card, CardImage } from '@/components/ui/card'
 import { getIconWeapon, getRarityClass } from '@/utils/_general'
 import { DeleteButton } from '@/components/delete-button'
 import { Trash } from 'lucide-react'
@@ -41,7 +39,7 @@ export function WeaponCard(props: WeaponCardProps) {
             )}
           >
             <figure className='absolute select-none pointer-events-none size-full'>
-              <Image
+              <CardImage
                 src={icon_image}
                 fill
                 alt={`Arma: ${name}`}
@@ -52,10 +50,10 @@ export function WeaponCard(props: WeaponCardProps) {
             {showWeaponIcon && (
               <div className='absolute bottom-3 right-3 select-none flex items-center'>
                 <figure className='select-none pointer-events-none size-8'>
-                  <Image
+                  <CardImage
                     src={WEAPON_ICON?.src || ''}
-                    width={500}
-                    height={500}
+                    width={32}
+                    height={32}
                     alt={`Arma: ${WEAPON_ICON?.label}`}
                     className='size-full object-cover transition-all duration-300 ease-in-out opacity-0 scale-0 group-hover/item:opacity-100 group-hover/item:scale-110'
                   />
