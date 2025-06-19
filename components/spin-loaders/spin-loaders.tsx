@@ -3,6 +3,7 @@ import { Loader2, LoaderCircle } from 'lucide-react'
 import { Loader } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
+import { Skeleton } from '../ui/skeleton'
 
 type SpinLoaderSquareCardProps = { fullSize?: boolean }
 
@@ -45,11 +46,7 @@ export function SpinLoaderAspectRatio() {
 }
 
 export function SpinLoaderInput() {
-  return (
-    <Card className='h-10 px-4 py-2'>
-      <Loader className='animate-spin' />
-    </Card>
-  )
+  return <Skeleton className='w-full h-9 rounded-md border-input border' />
 }
 
 export function SpinLoaderButton() {
