@@ -221,3 +221,20 @@ export const materialSchema = z.object({
   is_public: z.boolean(),
 })
 export type MaterialSchema = z.infer<typeof materialSchema>
+
+export const teamSchema = z.object({
+  id: z.string().optional(),
+
+  name: z
+    .string({
+      required_error: 'El nombre del equipo es obligatorio',
+      invalid_type_error: 'El nombre del equipo debe ser una cadena de texto',
+    })
+    .min(2, 'El nombre debe tener al menos 2 caracteres'),
+
+  characters: z
+    .array(z.object({ label: z.string(), value: z.string() }))
+    .min(3, 'Debes seleccionar 3 personajes')
+    .max(3, 'Debes seleccionar un máximo de 3 personajes'),
+})
+export type TeamSchema = z.infer<typeof teamSchema>
