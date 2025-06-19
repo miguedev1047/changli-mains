@@ -1,1 +1,1 @@
-export * from './material-card'
+export * from './team-card'
