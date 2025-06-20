@@ -1,8 +1,9 @@
 'use server'
 
-import { createContext } from '@/server/lib/context'
+import { auth } from '@/server/lib/auth'
+import { headers } from 'next/headers'
 
 export async function getServerSession() {
-  const session = createContext()
+  const session = auth.api.getSession({ headers: await headers() })
   return session
 }
