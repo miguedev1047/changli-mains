@@ -1,8 +1,7 @@
-import { trpc } from '@/app/_trpc/client'
 import { lowerCaseFunc } from '@/helpers/to-lower-str'
-import { inferOutput } from '@trpc/tanstack-react-query'
+import { RouterOutputs } from '@/trpc/react'
 
-type WeaponsProps = inferOutput<typeof trpc.weapons.getAll>
+type WeaponsProps = RouterOutputs['weapons']['getAll']
 type Filters = { [k: string]: string }
 
 export function filterWeapons(weapons: WeaponsProps, filters: Filters) {

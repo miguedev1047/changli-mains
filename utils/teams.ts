@@ -1,8 +1,7 @@
-import { trpc } from '@/app/_trpc/client'
 import { lowerCaseFunc } from '@/helpers/to-lower-str'
-import { inferOutput } from '@trpc/tanstack-react-query'
+import { RouterOutputs } from '@/trpc/react'
 
-type TeamsProps = inferOutput<typeof trpc.teams.getAll>
+type TeamsProps = RouterOutputs['teams']['getAll']
 type Filters = { [k: string]: string }
 
 export function filterTeams(teams: TeamsProps, filters: Filters) {

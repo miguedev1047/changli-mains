@@ -1,8 +1,8 @@
-import { trpc } from '@/app/_trpc/client'
-import { lowerCaseFunc } from '@/helpers/to-lower-str'
-import { inferOutput } from '@trpc/tanstack-react-query'
 
-type CharactersProps = inferOutput<typeof trpc.characters.getAll>
+import { lowerCaseFunc } from '@/helpers/to-lower-str'
+import { RouterOutputs } from '@/trpc/react'
+
+type CharactersProps = RouterOutputs['characters']['getAll']
 type Filters = { [k: string]: string }
 
 export function filterCharacters(

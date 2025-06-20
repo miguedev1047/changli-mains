@@ -1,8 +1,7 @@
-import { trpc } from '@/app/_trpc/client'
 import { lowerCaseFunc } from '@/helpers/to-lower-str'
-import { inferOutput } from '@trpc/tanstack-react-query'
+import { RouterOutputs } from '@/trpc/react'
 
-type MaterialsProps = inferOutput<typeof trpc.materials.getAll>
+type MaterialsProps = RouterOutputs['materials']['getAll']
 type Filters = { [k: string]: string }
 
 export function filterMaterials(material: MaterialsProps, filters: Filters) {

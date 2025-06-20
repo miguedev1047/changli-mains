@@ -1,9 +1,8 @@
-import { trpc } from '@/app/_trpc/client'
 import { echoSetsOptions } from '@/constants/options'
 import { lowerCaseFunc } from '@/helpers/to-lower-str'
-import { inferOutput } from '@trpc/tanstack-react-query'
+import { RouterOutputs } from '@/trpc/react'
 
-type EchoesProps = inferOutput<typeof trpc.echoes.getAll>
+type EchoesProps = RouterOutputs['echoes']['getAll']
 type Filters = { [k: string]: string }
 
 export function filterEchoes(echoes: EchoesProps, filters: Filters) {
