@@ -1,11 +1,9 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { weaponSchema, WeaponSchema } from '@/schemas'
-import { trpc } from '@/app/_trpc/client'
-import { invalidateQuery } from '@/helpers/invalidate-query'
+import { trpc } from '@/trpc/react'
 
 const DEFAULT_VALUES: WeaponSchema = {
   name: '',
@@ -18,28 +16,28 @@ const DEFAULT_VALUES: WeaponSchema = {
 }
 
 export function useWeaponForm() {
-  const { push } = useRouter()
-  const queryClient = useQueryClient()
-
-  const weaponMutationOpts = trpc.weapons.create.mutationOptions()
-  const weaponMutation = useMutation(weaponMutationOpts)
-  const weaponQueryKey = trpc.weapons.getAll.queryKey()
-
   const form = useForm<WeaponSchema>({
     resolver: zodResolver(weaponSchema),
     defaultValues: DEFAULT_VALUES,
   })
 
-  const isSubmitting = form.formState.isSubmitting
+  const { push } = useRouter()
+  const utils = trpc.useUtils()
 
-  const onSubmit = form.handleSubmit(async (values) => {
-    const { success, message } = await weaponMutation.mutateAsync(values)
+  const createWeapon = trpc.weapons.create.useMutation({
+    onSuccess: async ({ message, success }) => {
+      if (!success) return toast.error(message)
 
-    if (!success) return toast.error(message)
+      toast.success(message)
+      await utils.weapons.invalidate()
+      push('/dashboard/weapons')
+    },
+  })
 
-    invalidateQuery(weaponQueryKey, queryClient)
-    toast.success(message)
-    push('/dashboard/weapons')
+  const isSubmitting = createWeapon.isPending
+
+  const onSubmit = form.handleSubmit((values) => {
+    createWeapon.mutate(values)
   })
 
   return { form, isSubmitting, onSubmit }

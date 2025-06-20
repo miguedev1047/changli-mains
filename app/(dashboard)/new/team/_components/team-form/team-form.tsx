@@ -15,10 +15,12 @@ import {
 import { CardFormWrapper } from '@/components/card-form-wrapper'
 import { Input } from '@/components/ui/input'
 import { EntityPicker } from '@/components/entity-picker'
+import { Suspense } from 'react'
+import { SpinContentLoader } from '@/components/spin-loaders'
 
 export function TeamForm() {
   const { form, isSubmitting, onSubmit } = useTeamForm()
-  const { charactersQueryOpts } = useOptsQuery()
+  const { charactersQuery } = useOptsQuery()
 
   return (
     <CardFormWrapper
@@ -62,17 +64,19 @@ export function TeamForm() {
                 <FormLabel>Personajes</FormLabel>
 
                 <FormControl>
-                  <EntityPicker
-                    queryOpts={charactersQueryOpts}
-                    onChange={field.onChange}
-                    commandProps={{ label: 'Selecciona un personaje' }}
-                    emptyIndicator={
-                      <p className='text-center text-sm'>
-                        No hay personajes disponibles.
-                      </p>
-                    }
-                    placeholder='Selecciona personajes'
-                  />
+                  <Suspense fallback={<SpinContentLoader />}>
+                    <EntityPicker
+                      queryData={charactersQuery}
+                      onChange={field.onChange}
+                      commandProps={{ label: 'Selecciona un personaje' }}
+                      emptyIndicator={
+                        <p className='text-center text-sm'>
+                          No hay personajes disponibles.
+                        </p>
+                      }
+                      placeholder='Selecciona personajes'
+                    />
+                  </Suspense>
                 </FormControl>
 
                 <FormMessage />
