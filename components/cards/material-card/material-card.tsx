@@ -21,7 +21,7 @@ export function MaterialCard(props: MaterialCardProps) {
   const { icon_image, name, id, rarity } = data!
 
   const { goToMaterialEditPage } = useMaterialNavigation(id)
-  const { onDeleteMaterial, materialQueryKey } = useDeleteMaterial(id)
+  const { onDeleteMaterial } = useDeleteMaterial(id)
 
   const RARITY_CLASS = getRarityClass(rarity)
 
@@ -56,7 +56,6 @@ export function MaterialCard(props: MaterialCardProps) {
 
       {showDeleteButton && (
         <DeleteButton
-          queryKey={materialQueryKey}
           onDelete={onDeleteMaterial}
           itemId={id}
           className='absolute bottom-3 left-3'

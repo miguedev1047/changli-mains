@@ -1,17 +1,24 @@
-import { trpc } from '@/app/_trpc/client'
-import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { trpc } from '@/trpc/react'
+import { toast } from 'sonner'
 
 export function useDeleteMaterial(id: string) {
-  const materialMutationOpts = trpc.materials.delete.mutationOptions()
-  const materialMutation = useMutation(materialMutationOpts)
-  const materialQueryKey = trpc.materials.getAll.queryKey()
+  const utils = trpc.useUtils()
 
-  const onDeleteMaterial = async () => {
-    return await materialMutation.mutateAsync({ id })
-  }
+  const deleteMaterial = trpc.materials.delete.useMutation({
+    onSuccess: async ({ message, success }) => {
+      if (!success) return toast.error(message)
 
-  return { onDeleteMaterial, materialQueryKey }
+      toast.success(message)
+      await utils.materials.getAll.invalidate()
+    },
+  })
+
+  const isPending = deleteMaterial.isPending
+
+  const onDeleteMaterial = () => deleteMaterial.mutate({ id })
+
+  return { onDeleteMaterial, isPending }
 }
 
 export function useMaterialNavigation(id: string) {
