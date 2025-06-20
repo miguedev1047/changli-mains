@@ -7,10 +7,11 @@ import { CharacterList } from '@/app/(dashboard)/dashboard/characters/_component
 import { CharacterFilter } from '@/app/(dashboard)/dashboard/characters/_components/character-filter'
 import { Suspense } from 'react'
 import { SpinContentLoader } from '@/components/spin-loaders'
+import { HydrateClient } from '@/trpc/server'
 
 export default function DashboardCharactersPage() {
   return (
-    <>
+    <HydrateClient>
       <header className='flex items-center justify-between'>
         <h2 className='font-black text-xl md:text-2xl uppercase'>
           Lista de personajes
@@ -42,6 +43,6 @@ export default function DashboardCharactersPage() {
           <CharacterList />
         </Suspense>
       </section>
-    </>
+    </HydrateClient>
   )
 }
