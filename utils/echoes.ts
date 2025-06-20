@@ -24,14 +24,14 @@ export function filterEchoes(echoes: EchoesProps, filters: Filters) {
 }
 
 type echoSetProps = {
-  id: string
-  createdAt: string
-  updatedAt: string
-  echoId: string
-  echoSet: string
-}
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    echoId: string;
+    echoSet: string;
+}[]
 
-export function mapEchoSetToOptions(data: echoSetProps[]) {
+export function mapEchoSetToOptions(data: echoSetProps) {
   return data.map((i) => {
     return echoSetsOptions.find((j) => j.value === i.echoSet)
   })
