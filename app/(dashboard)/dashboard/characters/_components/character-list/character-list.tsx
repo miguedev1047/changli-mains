@@ -1,18 +1,15 @@
 'use client'
 
-import { trpc } from '@/app/_trpc/client'
 import { CharacterCard } from '@/components/cards/character-card'
+import { trpc } from '@/trpc/react'
 import { filterCharacters } from '@/utils/character'
-import { useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 
 export function CharacterList() {
   const searchParams = useSearchParams()
   const queryParams = Object.fromEntries(searchParams.entries())
 
-  const characterQueryOpts = trpc.characters.getAll.queryOptions()
-  const { data: characters } = useSuspenseQuery(characterQueryOpts)
-
+  const [characters] = trpc.characters.getAll.useSuspenseQuery()
   const filteredCharacters = filterCharacters(characters, queryParams)
 
   const characterList = filteredCharacters?.map((character) => (
