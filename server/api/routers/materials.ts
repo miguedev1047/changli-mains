@@ -26,7 +26,6 @@ export const materialsRouter = router({
 
     try {
       const material = await db.query.materials.findFirst({
-        with: { roles: true },
         where: (material, { eq }) => eq(material.id, id),
       })
       return material
@@ -48,7 +47,6 @@ export const materialsRouter = router({
 
       try {
         const material = await db.query.materials.findFirst({
-          with: { roles: true },
           where: (material, { eq }) => eq(material.name, name),
         })
         return material

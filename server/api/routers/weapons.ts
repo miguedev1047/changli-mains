@@ -29,7 +29,6 @@ export const weaponsRouter = router({
     try {
       const weapon = await db.query.weapons.findFirst({
         where: (weapon, { eq }) => eq(weapon.id, id),
-        with: { roles: true },
       })
       return weapon
     } catch {

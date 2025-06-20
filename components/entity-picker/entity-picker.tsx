@@ -1,18 +1,18 @@
 'use client'
 
-import { UseQueryOptions, useQuery } from '@tanstack/react-query'
 import { MultipleSelect, Option } from '@/components/ui/multiple-select'
+import { UseQueryResult } from '@tanstack/react-query'
 import { SpinLoaderInput } from '@/components/spin-loaders'
 
 type EntityPickerProps<T> = {
-  queryOpts: UseQueryOptions<T[], Error>
+  queryData: UseQueryResult<T[]>
 } & Omit<React.ComponentProps<typeof MultipleSelect>, 'options'>
 
 export function EntityPicker<T extends { id: string | number; name: string }>({
-  queryOpts,
+  queryData,
   ...props
 }: EntityPickerProps<T>) {
-  const { data, isLoading, isError } = useQuery<T[]>(queryOpts)
+  const { data, isLoading, isError } = queryData
 
   if (isLoading || isError) return <SpinLoaderInput />
 
