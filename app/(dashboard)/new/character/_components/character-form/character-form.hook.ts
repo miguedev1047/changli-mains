@@ -1,11 +1,9 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { characterSchema, CharacterSchema } from '@/schemas'
-import { trpc } from '@/app/_trpc/client'
-import { invalidateQuery } from '@/helpers/invalidate-query'
+import { trpc } from '@/trpc/react'
 
 const DEFAULT_VALUES = {
   name: '',
@@ -22,28 +20,28 @@ const DEFAULT_VALUES = {
 }
 
 export function useCharacterForm() {
-  const { push } = useRouter()
-  const queryClient = useQueryClient()
-
-  const characterMutationOpts = trpc.characters.create.mutationOptions()
-  const characterMutation = useMutation(characterMutationOpts)
-  const characterQueryKey = trpc.characters.getAll.queryKey()
-
   const form = useForm<CharacterSchema>({
     resolver: zodResolver(characterSchema),
     defaultValues: DEFAULT_VALUES,
   })
 
-  const isSubmitting = form.formState.isSubmitting
+  const { push } = useRouter()
+  const utils = trpc.useUtils()
 
-  const onSubmit = form.handleSubmit(async (values) => {
-    const { success, message } = await characterMutation.mutateAsync(values)
+  const createCharacter = trpc.characters.create.useMutation({
+    onSuccess: async ({ message, success }) => {
+      if (!success) return toast.error(message)
 
-    if (!success) return toast.error(message)
+      toast.success(message)
+      await utils.characters.invalidate()
+      push('/dashboard/characters')
+    },
+  })
 
-    invalidateQuery(characterQueryKey, queryClient)
-    toast.success(message)
-    push('/dashboard/characters')
+  const isSubmitting = createCharacter.isPending
+
+  const onSubmit = form.handleSubmit((values) => {
+    createCharacter.mutate(values)
   })
 
   return { form, isSubmitting, onSubmit }
