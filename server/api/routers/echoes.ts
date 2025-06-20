@@ -1,10 +1,10 @@
+import { eq } from 'drizzle-orm'
+import { db } from '@/server/db'
+import { publicProcedure, protectedProcedure, router } from '@/server/api/trpc'
 import { echoSchema, recordIdSchema, recordNameSchema } from '@/schemas'
-import { db } from '../db'
-import { publicProcedure, protectedProcedure, router } from '../trpc'
-import { echoes, echoesSets } from '../db/schema/echoes'
 import { createId } from '@paralleldrive/cuid2'
 import { DEFAULT_ZERO } from '@/constants/misc'
-import { eq } from 'drizzle-orm'
+import { echoes, echoesSets } from '@/server/db/schema/echoes'
 
 export const echoesRouter = router({
   getAll: publicProcedure.query(async () => {

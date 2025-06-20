@@ -1,7 +1,7 @@
-import { db } from '@/server/db'
 import { eq } from 'drizzle-orm'
+import { db } from '@/server/db'
+import { publicProcedure, protectedProcedure, router } from '@/server/api/trpc'
 import { recordIdSchema, recordNameSchema, teamSchema } from '@/schemas'
-import { protectedProcedure, publicProcedure, router } from '@/server/trpc'
 import { createId } from '@paralleldrive/cuid2'
 import { teams, teamsCharacters } from '@/server/db/schema/teams'
 
