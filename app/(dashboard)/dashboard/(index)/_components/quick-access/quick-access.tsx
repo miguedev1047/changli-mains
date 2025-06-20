@@ -1,13 +1,18 @@
+'use client'
+
 import Link from 'next/link'
 
 import { Card, CardContent } from '@/components/ui/card'
 import { quickLinksData } from '@/constants/data'
 import { cn } from '@/lib/utils'
+import { trpc } from '@/trpc/react'
 
 export function QuickAccess() {
+  const [metricsQuery] = trpc.metrics.data.useSuspenseQuery()
+
   return (
     <div className='grid @5xl/main:grid-cols-2 grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs'>
-      {quickLinksData.map((link) => (
+      {quickLinksData.map((link, index) => (
         <Link
           key={link.href}
           href={link.href}
@@ -32,7 +37,7 @@ export function QuickAccess() {
 
                 <div className='text-right'>
                   <h2 className='font-semibold @[250px]/card:text-3xl text-xl tabular-nums'>
-                    100
+                    {metricsQuery[index].count}
                   </h2>
                   <p>{link.title} totales</p>
                 </div>
