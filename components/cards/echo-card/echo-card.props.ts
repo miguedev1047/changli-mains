@@ -1,8 +1,7 @@
-import { type trpc } from '@/app/_trpc/client'
-import { type inferOutput } from '@trpc/tanstack-react-query'
+import { RouterOutputs } from '@/trpc/react'
 
 export type EchoCardProps = {
-  data: inferOutput<typeof trpc.echoes.getUnique>
+  data: RouterOutputs['echoes']['getUnique']
   showDeleteButton?: boolean
   showEchoIcons?: boolean
 }

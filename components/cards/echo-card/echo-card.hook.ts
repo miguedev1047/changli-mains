@@ -1,17 +1,24 @@
-import { trpc } from '@/app/_trpc/client'
-import { useMutation } from '@tanstack/react-query'
+import { trpc } from '@/trpc/react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 export function useDeleteEcho(id: string) {
-  const echoMutationOpts = trpc.echoes.delete.mutationOptions()
-  const echoMutation = useMutation(echoMutationOpts)
-  const echoQueryKey = trpc.echoes.getAll.queryKey()
+  const utils = trpc.useUtils()
 
-  const onDeleteEcho = async () => {
-    return await echoMutation.mutateAsync({ id })
-  }
+  const deleteEcho = trpc.echoes.delete.useMutation({
+    onSuccess: async ({ message, success }) => {
+      if (!success) return toast.error(message)
 
-  return { onDeleteEcho, echoQueryKey }
+      toast.success(message)
+      await utils.echoes.invalidate()
+    },
+  })
+
+  const isPending = deleteEcho.isPending
+
+  const onDeleteEcho = () => deleteEcho.mutate({ id })
+
+  return { onDeleteEcho, isPending }
 }
 
 export function useEchoNavigation(id: string) {

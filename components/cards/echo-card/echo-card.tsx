@@ -20,10 +20,10 @@ export function EchoCard(props: EchoCardProps) {
   const { data, showDeleteButton } = props
   const { icon_image, name, id, sets } = data!
 
-  const echoSet = mapEchoSetToOptions(sets)
+  const mappedEchoOptions = mapEchoSetToOptions(sets)
 
   const { goToEchoEditPage } = useEchoNavigation(id)
-  const { onDeleteEcho, echoQueryKey } = useDeleteEcho(id)
+  const { onDeleteEcho } = useDeleteEcho(id)
 
   if (!data) return null
 
@@ -48,7 +48,7 @@ export function EchoCard(props: EchoCardProps) {
             </figure>
 
             <ul className='absolute top-3 right-3 space-y-1'>
-              {echoSet.map((item) => {
+              {mappedEchoOptions.map((item) => {
                 if (!item) return
 
                 return (
@@ -75,7 +75,6 @@ export function EchoCard(props: EchoCardProps) {
 
       {showDeleteButton && (
         <DeleteButton
-          queryKey={echoQueryKey}
           onDelete={onDeleteEcho}
           itemId={id}
           className='absolute bottom-3 left-3'
