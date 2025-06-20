@@ -1,19 +1,16 @@
 'use client'
 
-import { trpc } from '@/app/_trpc/client'
 import { EchoCard } from '@/components/cards/echo-card'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { trpc } from '@/trpc/react'
 import { filterEchoes } from '@/utils/echoes'
-import { useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 
 export function EchoList() {
   const searchParams = useSearchParams()
   const queryParams = Object.fromEntries(searchParams.entries())
 
-  const echoQueryOpts = trpc.echoes.getAll.queryOptions()
-  const { data: echoes } = useSuspenseQuery(echoQueryOpts)
-
+  const [echoes] = trpc.echoes.getAll.useSuspenseQuery()
   const filteredEchoes = filterEchoes(echoes, queryParams)
 
   const echoList = filteredEchoes?.map((echo) => (

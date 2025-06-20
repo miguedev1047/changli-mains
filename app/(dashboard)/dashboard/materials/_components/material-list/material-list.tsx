@@ -1,19 +1,16 @@
 'use client'
 
-import { trpc } from '@/app/_trpc/client'
 import { MaterialCard } from '@/components/cards/material-card'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { trpc } from '@/trpc/react'
 import { filterMaterials } from '@/utils/materials'
-import { useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 
 export function MaterialList() {
   const searchParams = useSearchParams()
   const queryParams = Object.fromEntries(searchParams.entries())
 
-  const materialQueryOpts = trpc.materials.getAll.queryOptions()
-  const { data: materials } = useSuspenseQuery(materialQueryOpts)
-
+  const [materials] = trpc.materials.getAll.useSuspenseQuery()
   const filteredMaterials = filterMaterials(materials, queryParams)
 
   const materialList = filteredMaterials?.map((material) => (

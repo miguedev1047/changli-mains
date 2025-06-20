@@ -1,18 +1,15 @@
 'use client'
 
-import { trpc } from '@/app/_trpc/client'
-import { useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { filterTeams } from '@/utils/teams'
 import { TeamCard } from '@/components/cards/team-card/team-card'
+import { trpc } from '@/trpc/react'
 
 export function TeamList() {
   const searchParams = useSearchParams()
   const queryParams = Object.fromEntries(searchParams.entries())
 
-  const teamQueryOpts = trpc.teams.getAll.queryOptions()
-  const { data: teams } = useSuspenseQuery(teamQueryOpts)
-
+  const [teams] = trpc.teams.getAll.useSuspenseQuery()
   const filteredTeams = filterTeams(teams, queryParams)
 
   const teamList = filteredTeams.map((team) => (

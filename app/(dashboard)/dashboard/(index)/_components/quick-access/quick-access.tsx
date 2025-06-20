@@ -2,13 +2,16 @@
 
 import Link from 'next/link'
 
-import { Card, CardContent } from '@/components/ui/card'
-import { quickLinksData } from '@/constants/data'
 import { cn } from '@/lib/utils'
 import { trpc } from '@/trpc/react'
+import { Card, CardContent } from '@/components/ui/card'
+import { quickLinksData } from '@/constants/data'
+import { SpinContentLoader } from '@/components/spin-loaders'
 
 export function QuickAccess() {
-  const [metricsQuery] = trpc.metrics.data.useSuspenseQuery()
+  const { data: metrics, isLoading, isError } = trpc.metrics.data.useQuery()
+
+  if (isLoading || isError || !metrics) return <SpinContentLoader />
 
   return (
     <div className='grid @5xl/main:grid-cols-2 grid-cols-1 gap-4 *:data-[slot=card]:shadow-xs'>
@@ -37,7 +40,7 @@ export function QuickAccess() {
 
                 <div className='text-right'>
                   <h2 className='font-semibold @[250px]/card:text-3xl text-xl tabular-nums'>
-                    {metricsQuery[index].count}
+                    {metrics[index].count}
                   </h2>
                   <p>{link.title} totales</p>
                 </div>
