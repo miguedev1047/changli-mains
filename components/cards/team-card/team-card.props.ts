@@ -1,7 +1,6 @@
-import { type trpc } from '@/app/_trpc/client'
-import { type inferOutput } from '@trpc/tanstack-react-query'
+import { type RouterOutputs } from '@/trpc/react'
 
 export type TeamCardProps = {
-  data: inferOutput<typeof trpc.teams.getUnique>
+  data: RouterOutputs['teams']['getUnique']
   showDeleteButton?: boolean
 }

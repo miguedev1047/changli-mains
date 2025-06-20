@@ -1,17 +1,24 @@
-import { trpc } from '@/app/_trpc/client'
-import { useMutation } from '@tanstack/react-query'
+import { trpc } from '@/trpc/react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 export function useDeleteTeam(id: string) {
-  const teamMutationOpts = trpc.teams.delete.mutationOptions()
-  const teamMutation = useMutation(teamMutationOpts)
-  const teamQueryKey = trpc.teams.getAll.queryKey()
+  const utils = trpc.useUtils()
 
-  const onDeleteTeam = async () => {
-    return await teamMutation.mutateAsync({ id })
-  }
+  const deleteTeam = trpc.teams.delete.useMutation({
+    onSuccess: async ({ message, success }) => {
+      if (!success) return toast.error(message)
 
-  return { onDeleteTeam, teamQueryKey }
+      toast.success(message)
+      await utils.teams.invalidate()
+    },
+  })
+
+  const isPending = deleteTeam.isPending
+
+  const onDeleteTeam = () => deleteTeam.mutate({ id })
+
+  return { onDeleteTeam, isPending }
 }
 
 export function useTeamNavigation(id: string) {

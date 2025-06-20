@@ -14,7 +14,7 @@ export function TeamCard(props: TeamCardProps) {
   const { data, showDeleteButton } = props
   const { name, id, characters } = data!
 
-  const { onDeleteTeam, teamQueryKey } = useDeleteTeam(id)
+  const { onDeleteTeam } = useDeleteTeam(id)
 
   const characterList = characters.map(({ characterInfo }) => (
     <li key={`${characterInfo.id}-${characterInfo.name}`}>
@@ -30,7 +30,6 @@ export function TeamCard(props: TeamCardProps) {
 
           {showDeleteButton && (
             <DeleteButton
-              queryKey={teamQueryKey}
               onDelete={onDeleteTeam}
               itemId={id}
             >
