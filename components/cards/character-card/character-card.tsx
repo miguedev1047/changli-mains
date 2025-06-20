@@ -23,7 +23,7 @@ export function CharacterCard(props: CharacterCardProps) {
   const { splash_image, name, id, element_type, rarity, weapon_type } = data!
 
   const { goToCharacterEditPage } = useCharacterNavigation(id)
-  const { characterQueryKey, onDeleteCharacter } = useDeleteCharacter(id)
+  const { onDeleteCharacter } = useDeleteCharacter(id)
 
   const ELEMENT_ICON = getIconElement(element_type)
   const WEAPON_ICON = getIconWeapon(weapon_type)
@@ -82,7 +82,6 @@ export function CharacterCard(props: CharacterCardProps) {
 
       {showDeleteButton && (
         <DeleteButton
-          queryKey={characterQueryKey}
           onDelete={onDeleteCharacter}
           itemId={id}
           className='absolute bottom-3 left-3'

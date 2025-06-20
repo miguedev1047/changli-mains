@@ -1,17 +1,24 @@
-import { trpc } from "@/app/_trpc/client"
-import { useMutation } from "@tanstack/react-query"
-import { useRouter } from "next/navigation"
+import { trpc } from '@/trpc/react'
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 export function useDeleteCharacter(id: string) {
-  const characterMutationOpts = trpc.characters.delete.mutationOptions()
-  const characterMutation = useMutation(characterMutationOpts)
-  const characterQueryKey = trpc.characters.getAll.queryKey()
+  const utils = trpc.useUtils()
 
-  const onDeleteCharacter = async () => {
-    return await characterMutation.mutateAsync({ id })
-  }
+  const deleteCharacter = trpc.characters.delete.useMutation({
+    onSuccess: async ({ message, success }) => {
+      if (!success) return toast.error(message)
 
-  return { onDeleteCharacter, characterQueryKey }
+      toast.success(message)
+      await utils.characters.invalidate()
+    },
+  })
+
+  const isPending = deleteCharacter.isPending
+
+  const onDeleteCharacter = () => deleteCharacter.mutate({ id })
+
+  return { onDeleteCharacter, isPending }
 }
 
 export function useCharacterNavigation(id: string) {
