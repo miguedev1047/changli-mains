@@ -19,7 +19,7 @@ export function WeaponCard(props: WeaponCardProps) {
   const { icon_image, name, id, rarity, weapon_type } = data!
 
   const { goToWeaponEditPage } = useWeaponNavigation(id)
-  const { onDeleteWeapon, weaponQueryKey } = useDeleteWeapon(id)
+  const { onDeleteWeapon } = useDeleteWeapon(id)
 
   const WEAPON_ICON = getIconWeapon(weapon_type)
   const RARITY_CLASS = getRarityClass(rarity)
@@ -69,7 +69,6 @@ export function WeaponCard(props: WeaponCardProps) {
 
       {showDeleteButton && (
         <DeleteButton
-          queryKey={weaponQueryKey}
           onDelete={onDeleteWeapon}
           itemId={id}
           className='absolute bottom-3 left-3'

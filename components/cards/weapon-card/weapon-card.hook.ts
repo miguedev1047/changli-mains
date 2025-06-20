@@ -1,17 +1,24 @@
-import { trpc } from '@/app/_trpc/client'
-import { useMutation } from '@tanstack/react-query'
+import { trpc } from '@/trpc/react'
 import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 export function useDeleteWeapon(id: string) {
-  const weaponMutationOpts = trpc.weapons.delete.mutationOptions()
-  const weaponMutation = useMutation(weaponMutationOpts)
-  const weaponQueryKey = trpc.weapons.getAll.queryKey()
+  const utils = trpc.useUtils()
 
-  const onDeleteWeapon = async () => {
-    return await weaponMutation.mutateAsync({ id })
-  }
+  const deleteWeapon = trpc.weapons.delete.useMutation({
+    onSuccess: async ({ message, success }) => {
+      if (!success) return toast.error(message)
 
-  return { onDeleteWeapon, weaponQueryKey }
+      toast.success(message)
+      await utils.weapons.invalidate()
+    },
+  })
+
+  const isPending = deleteWeapon.isPending
+
+  const onDeleteWeapon = () => deleteWeapon.mutate({ id })
+
+  return { onDeleteWeapon, isPending }
 }
 
 export function useWeaponNavigation(id: string) {

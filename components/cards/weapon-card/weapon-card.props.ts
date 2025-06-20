@@ -1,8 +1,7 @@
-import { type trpc } from '@/app/_trpc/client'
-import { type inferOutput } from '@trpc/tanstack-react-query'
+import { type RouterOutputs } from '@/trpc/react'
 
 export type WeaponCardProps = {
-  data: inferOutput<typeof trpc.weapons.getUnique>
+  data: RouterOutputs['weapons']['getUnique']
   showDeleteButton?: boolean
   showWeaponIcon?: boolean
 }
