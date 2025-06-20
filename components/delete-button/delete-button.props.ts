@@ -1,16 +1,13 @@
-import { TRPCQueryKey } from "@trpc/tanstack-react-query"
 
 export type DeleteButtonProps = {
   children: React.ReactNode
   className?: string
   itemId: string
-  queryKey: TRPCQueryKey
-  onDelete: (itemId: string) => Promise<{ message: string; success: boolean }> 
+  onDelete: (itemId: string) => void
   disabled?: boolean
 }
 
 export type UseDeleteProps = {
   itemId: string
-  queryKey: TRPCQueryKey
-  onDelete: (itemId: string) => Promise<{ message: string; success: boolean }> 
+  onDelete: (itemId: string) => void
 }

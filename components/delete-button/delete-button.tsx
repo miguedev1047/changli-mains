@@ -23,8 +23,8 @@ import { DeleteButtonProps } from '@/components/delete-button/delete-button.prop
 import { useDelete } from '@/components/delete-button/delete-button.hook'
 
 export function DeleteButton(props: DeleteButtonProps) {
-  const { children, className, itemId, disabled, onDelete, queryKey } = props
-  const deleteHook = useDelete({ itemId, onDelete, queryKey })
+  const { children, className, itemId, disabled, onDelete } = props
+  const deleteHook = useDelete({ itemId, onDelete })
 
   return (
     <TooltipProvider>
