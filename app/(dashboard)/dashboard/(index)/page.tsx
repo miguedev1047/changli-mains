@@ -1,7 +1,5 @@
 import { QuickAccess } from '@/app/(dashboard)/dashboard/(index)/_components/quick-access'
-import { SpinContentLoader } from '@/components/spin-loaders'
 import { HydrateClient } from '@/trpc/server'
-import { Suspense } from 'react'
 
 export default function DashboardIndexPage() {
   return (
@@ -12,9 +10,7 @@ export default function DashboardIndexPage() {
         </header>
 
         <section className='space-y-6'>
-          <Suspense fallback={<SpinContentLoader />}>
-            <QuickAccess />
-          </Suspense>
+          <QuickAccess />
         </section>
       </section>
     </HydrateClient>

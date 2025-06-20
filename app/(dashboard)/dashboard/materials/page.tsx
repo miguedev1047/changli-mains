@@ -7,10 +7,11 @@ import { Plus } from 'lucide-react'
 import { Suspense } from 'react'
 import { MaterialList } from '@/app/(dashboard)/dashboard/materials/_components/material-list'
 import { MaterialFilter } from '@/app/(dashboard)/dashboard/materials/_components/material-filter'
+import { HydrateClient } from '@/trpc/server'
 
 export default function DashboardMaterialsPage() {
   return (
-    <>
+    <HydrateClient>
       <header className='flex items-center justify-between'>
         <h2 className='font-black text-xl md:text-2xl uppercase'>
           Lista de materiales
@@ -42,6 +43,6 @@ export default function DashboardMaterialsPage() {
           <MaterialList />
         </Suspense>
       </section>
-    </>
+    </HydrateClient>
   )
 }

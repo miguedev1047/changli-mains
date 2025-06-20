@@ -7,10 +7,11 @@ import { WeaponFilter } from '@/app/(dashboard)/dashboard/weapons/_components/we
 import { Suspense } from 'react'
 import { WeaponList } from '@/app/(dashboard)/dashboard/weapons/_components/weapon-list'
 import { SpinContentLoader } from '@/components/spin-loaders'
+import { HydrateClient } from '@/trpc/server'
 
 export default function DashboardWeaponsPage() {
   return (
-    <>
+    <HydrateClient>
       <header className='flex items-center justify-between'>
         <h2 className='font-black text-xl md:text-2xl uppercase'>
           Lista de armas
@@ -42,6 +43,6 @@ export default function DashboardWeaponsPage() {
           <WeaponList />
         </Suspense>
       </section>
-    </>
+    </HydrateClient>
   )
 }

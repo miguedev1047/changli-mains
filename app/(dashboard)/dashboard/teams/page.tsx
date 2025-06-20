@@ -6,10 +6,11 @@ import { Plus } from 'lucide-react'
 import { Suspense } from 'react'
 import { SpinContentLoader } from '@/components/spin-loaders'
 import { TeamList } from '@/app/(dashboard)/dashboard/teams/_components/team-list'
+import { HydrateClient } from '@/trpc/server'
 
 export default function DashboardTeamsPage() {
   return (
-    <>
+    <HydrateClient>
       <header className='flex items-center justify-between'>
         <h2 className='font-black text-xl md:text-2xl uppercase'>
           Lista de equipos
@@ -41,6 +42,6 @@ export default function DashboardTeamsPage() {
           <TeamList />
         </Suspense>
       </section>
-    </>
+    </HydrateClient>
   )
 }

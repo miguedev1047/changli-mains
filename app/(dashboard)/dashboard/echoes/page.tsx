@@ -7,10 +7,11 @@ import { SpinContentLoader } from '@/components/spin-loaders'
 import { Suspense } from 'react'
 import { EchoList } from '@/app/(dashboard)/dashboard/echoes/_components/echo-list'
 import { EchoFilter } from '@/app/(dashboard)/dashboard/echoes/_components/echo-filter'
+import { HydrateClient } from '@/trpc/server'
 
 export default function DashboardEchoesPage() {
   return (
-    <>
+    <HydrateClient>
       <header className='flex items-center justify-between'>
         <h2 className='font-black text-xl md:text-2xl uppercase'>
           Lista de ecos
@@ -42,6 +43,6 @@ export default function DashboardEchoesPage() {
           <EchoList />
         </Suspense>
       </section>
-    </>
+    </HydrateClient>
   )
 }
